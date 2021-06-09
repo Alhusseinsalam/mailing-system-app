@@ -1,0 +1,63 @@
+
+<div class="inputform">
+    <h2 class="design">Registration Form</h2>
+    <form action="Register" method="post">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td><input id="gender1" type="radio" name="gender" value="male" />Male
+                    <input type="radio" id="gender2" name="gender" value="female" />Female
+                </td>
+            </tr>
+            <tr>
+                <td>Date Of Birth:</td>
+                <td><input type="date" name="dob" /></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input name="addressLine" type="text"></textarea></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" /></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><input type="text" name="state" /></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td><select name="country">
+                        <option>Select-Country:</option>
+                        <option>United States of America</option>
+                        <option>Germany</option>
+                        <option>Portugal</option>
+                        <option>United Kingdom</option>
+                        <option>Other</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Contact:</td>
+                <td><input type="text" name="contact" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="submit" type="submit" value="Register" />
+                    <input id="reset" type="reset" value="Clear" />
+                </td>
+            </tr>
+        </table>
+        <p>Already have an account? <a href="./index.html">Login here</a></p>
+    </form>
+</div>

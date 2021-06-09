@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
+id="test" version="4.0">
+  <display-name>Company_Mailing_System</display-name>
+  <servlet>
+  	<display-name>Test</display-name>
+  	<servlet-name>Test</servlet-name>
+  	<servlet-class>dev.husein.servlet.Test</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Test</servlet-name>
+    <url-pattern>/Test</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<display-name>ComposeEndPoint</display-name>
+  	<servlet-name>ComposeEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.ComposeEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ComposeEndPoint</servlet-name>
+    <url-pattern>/ComposeEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>ComposeProcessEndPoint</display-name>
+  	<servlet-name>ComposeProcessEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.ComposeProcessEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ComposeProcessEndPoint</servlet-name>
+    <url-pattern>/ComposeProcessEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>DeleteMailEndPoint</display-name>
+  	<servlet-name>DeleteMailEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.DeleteMailEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>DeleteMailEndPoint</servlet-name>
+    <url-pattern>/DeleteMailEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>InboxEndPoint</display-name>
+  	<servlet-name>InboxEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.InboxEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>InboxEndPoint</servlet-name>
+    <url-pattern>/InboxEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>LoginEndPoint</display-name>
+  	<servlet-name>LoginEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.LoginEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginEndPoint</servlet-name>
+    <url-pattern>/LoginEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>LogoutEndPoint</display-name>
+  	<servlet-name>LogoutEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.LogoutEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LogoutEndPoint</servlet-name>
+    <url-pattern>/LogoutEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>RegisterEndPoint</display-name>
+  	<servlet-name>RegisterEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.RegisterEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RegisterEndPoint</servlet-name>
+    <url-pattern>/RegisterEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>SentEndPoint</display-name>
+  	<servlet-name>SentEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.SentEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SentEndPoint</servlet-name>
+    <url-pattern>/SentEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>ShredMailEndPoint</display-name>
+  	<servlet-name>ShredMailEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.ShredMailEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ShredMailEndPoint</servlet-name>
+    <url-pattern>/ShredMailEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>TrashEndPoint</display-name>
+  	<servlet-name>TrashEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.TrashEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>TrashEndPoint</servlet-name>
+    <url-pattern>/TrashEndPoint</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+  	<display-name>ViewMailEndPoint</display-name>
+  	<servlet-name>ViewMailEndPoint</servlet-name>
+  	<servlet-class>dev.husein.servlet.ViewMailEndPoint</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ViewMailEndPoint</servlet-name>
+    <url-pattern>/ViewMailEndPoint</url-pattern>
+  </servlet-mapping>
+   
+    
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
