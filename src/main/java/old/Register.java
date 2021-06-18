@@ -1,12 +1,11 @@
-package dev.husein.dao;
+package old;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import dev.husein.util.ConnectionProvider;
 import dev.husein.util.Formatter;
 
-public class Register {
+public class Register2 {
 	public static int save(String name,String email,String password,String gender,String dob,String addressLine,String city,String state,String country,String contact){
 		int status=0;
 		java.sql.Date sqlDOB=Formatter.getSqlDate(dob);

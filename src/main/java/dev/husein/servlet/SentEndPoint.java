@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dev.husein.util.ConnectionProvider;
+import old.ConnectionProvider;
 
 /**
  * Servlet implementation class SentEndPoint

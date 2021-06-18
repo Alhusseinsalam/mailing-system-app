@@ -1,8 +1,8 @@
-package dev.husein.util;
+package old;
 
 import java.sql.*;
 
-public class ConnectionProvider {
+public class ConnectionProvider2 {
 	public static Connection get(){
 	Connection con=null;
 	try{

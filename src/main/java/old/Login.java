@@ -1,10 +1,8 @@
-package dev.husein.dao;
+package old;
 
 import java.sql.*;
 
-import dev.husein.util.ConnectionProvider;
-
-public class Login {
+public class Login2 {
 
 	public static boolean validate(String email,String password){
 		boolean status=false;

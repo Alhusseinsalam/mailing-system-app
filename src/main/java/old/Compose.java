@@ -1,12 +1,11 @@
-package dev.husein.dao;
+package old;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import dev.husein.util.Formatter;
-import dev.husein.util.ConnectionProvider;
 
-public class Compose {
+public class Compose2 {
 	public static int save(String sender,String receiver,String subject,String message){
 		int status=0;
 		try{
