@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dev.husein.model.User;
 import dev.husein.persistence.UserPersistenceService;
-import dev.husein.util.Formatter;
+import dev.husein.util.DateFormatter;
 
 @WebServlet("/RegisterEndPoint")
 public class RegisterEndPoint extends HttpServlet {
@@ -44,16 +44,16 @@ public class RegisterEndPoint extends HttpServlet {
 		String contact = request.getParameter("contact");
 
 		User user = new User(name, email, password, gender, dob, addressLine, city, state, country, contact,
-				Formatter.getCurrentDate().toString(), "yes");
+				DateFormatter.getCurrentDate().toString(), "yes");
 		try {
 			// persist user
 			ups.addUser(user);
 			
 			out.print("<p>You are successfully registered!</p>");
-			request.getRequestDispatcher("login.html").include(request, response);
+			request.getRequestDispatcher("login-page.html").include(request, response);
 		} catch (Exception e) {
 			out.print("<p>Registeration Failed!</p>");
-			request.getRequestDispatcher("login.html").include(request, response);
+			request.getRequestDispatcher("register-page.html").include(request, response);
 
 		}
 		request.getRequestDispatcher("footer.html").include(request, response);

@@ -2,9 +2,6 @@ package dev.husein.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,7 +31,7 @@ public class InboxEndPoint extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("header.html").include(request, response);
-		request.getRequestDispatcher("link.html").include(request, response);
+		request.getRequestDispatcher("links-ref.html").include(request, response);
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -57,7 +54,7 @@ public class InboxEndPoint extends HttpServlet {
 				
 				for (Message message : inboxMessages) {
 					out.print("<tr><td>" + message.getSender() 
-							+ "</td><td><a href='ViewMailServlet?id="
+							+ "</td><td><a href='ViewMailEndPoint?id="
 							+ message.getId() + "'>" 
 							+ message.getSubject() + "</a></td></tr>");
 				}

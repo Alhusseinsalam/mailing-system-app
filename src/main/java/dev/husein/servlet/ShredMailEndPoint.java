@@ -2,9 +2,8 @@ package dev.husein.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,55 +11,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import old.ConnectionProvider;
+import dev.husein.persistence.MessagePersistenceService;
 
-/**
- * Servlet implementation class ShredMailEndPoint
- */
 @WebServlet("/ShredMailEndPoint")
 public class ShredMailEndPoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShredMailEndPoint() {
-        super();
-    }
+	
+	@Inject
+	MessagePersistenceService mps;
+	
+	public ShredMailEndPoint() {
+		super();
+	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
+		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("header.html").include(request, response);
-		request.getRequestDispatcher("link.html").include(request, response);
-		
-		HttpSession session=request.getSession(false);
-		if(session==null){
+		request.getRequestDispatcher("links-ref.html").include(request, response);
+
+		HttpSession session = request.getSession(false);
+		if (session == null) {
 			response.sendRedirect("index.html");
-		}else{
-			String email=(String)session.getAttribute("email");
-			out.print("<span style='float:right'>Hi, "+email+"</span>");
+		} else {
+			String email = (String) session.getAttribute("email");
+			out.print("<span style='float:right'>Hi, " + email + "</span>");
+
+			long id = Long.parseLong(request.getParameter("id"));
 			
-			int id=Integer.parseInt(request.getParameter("id"));
-			
-			try{
-				Connection con=ConnectionProvider.get();
-				PreparedStatement ps=con.prepareStatement("delete from company_mailer_message where id=?");
-				ps.setInt(1,id);
-				int i=ps.executeUpdate();
-				if(i>0){
-					request.setAttribute("msg","Mail successfully deleted permanently!");
-					request.getRequestDispatcher("TrashServlet").forward(request, response);
-				}
-				con.close();
-			}catch(Exception e){out.print(e);}
+			try {
+				mps.deleteMessageFromTrash(id);
+				request.setAttribute("msg", "Mail successfully deleted permanently!");
+				request.getRequestDispatcher("TrashEndPoint").forward(request, response);
+			} catch (Exception e) {
+				request.setAttribute("msg", "Mail failed to be deleted permanently!");
+				request.getRequestDispatcher("TrashEndPoint").forward(request, response);
+				out.print(e);
+			}
 		}
-		
-		
-		
+
 		request.getRequestDispatcher("footer.html").include(request, response);
 		out.close();
 

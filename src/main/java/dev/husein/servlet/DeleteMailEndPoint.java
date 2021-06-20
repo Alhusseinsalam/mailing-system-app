@@ -2,9 +2,6 @@ package dev.husein.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +28,7 @@ public class DeleteMailEndPoint extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("header.html").include(request, response);
-		request.getRequestDispatcher("link.html").include(request, response);
+		request.getRequestDispatcher("links-ref.html").include(request, response);
 
 		HttpSession session = request.getSession(false);
 		
@@ -41,17 +38,17 @@ public class DeleteMailEndPoint extends HttpServlet {
 			String email = (String) session.getAttribute("email");
 			out.print("<span style='float:right'>Hi, " + email + "</span>");
 
-			int id = Integer.parseInt(request.getParameter("id"));
+			long id = Long.parseLong(request.getParameter("id"));
 
 			try {
 
 				mps.putMessageToTrashById(id);
 				request.setAttribute("msg", "Mail successfully deleted!");
-				request.getRequestDispatcher("InboxServlet").forward(request, response);
+				request.getRequestDispatcher("InboxEndPoint").forward(request, response);
 
 			} catch (Exception e) {
 				request.setAttribute("msg", "Mail deletion failed!");
-				request.getRequestDispatcher("InboxServlet").forward(request, response);
+				request.getRequestDispatcher("InboxEndPoint").forward(request, response);
 
 			}
 		}

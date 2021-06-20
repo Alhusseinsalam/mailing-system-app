@@ -1,18 +1,25 @@
 package dev.husein.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import dev.husein.util.PasswordHandler;
+
 @Entity
-@Table(name = "USER")
+@Table(name = "COMPANY_USER")
 public class User {
+	
+	public User() {	
+	}
+	
 	@Id
 	@Column(name = "USER_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(name = "NAME")
@@ -55,17 +62,12 @@ public class User {
 	@Column(name = "AUTHORIZED")
 	private String authorized;
 	
-	public User() {
-		
-	}
-	
 	public User(String name, String email, String password, String gender,
 			String dateOfBirth, String addressLine, String city, String state, String country, String contact,
 			String registerationDate, String authorized) {
-		super();
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = PasswordHandler.hashPassword(password);
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.addressLine = addressLine;
@@ -102,11 +104,11 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return PasswordHandler.hashPassword(password);
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = PasswordHandler.hashPassword(password);
 	}
 
 	public String getGender() {
@@ -181,4 +183,12 @@ public class User {
 		this.authorized = authorized;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
+				+ gender + ", dateOfBirth=" + dateOfBirth + ", addressLine=" + addressLine + ", city=" + city
+				+ ", state=" + state + ", country=" + country + ", contact=" + contact + ", registerationDate="
+				+ registerationDate + ", authorized=" + authorized + "]";
+	}
+	
 }

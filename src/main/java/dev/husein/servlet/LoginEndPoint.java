@@ -33,14 +33,14 @@ public class LoginEndPoint extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if (ups.checkLoginCredentials(email, password)) {
-			// out.print("you are successfully logged in!");
 			request.getSession().setAttribute("login", "true");
 			request.getSession().setAttribute("email", email);
-			response.sendRedirect("InboxServlet");
+			response.sendRedirect("InboxEndPoint");
+			out.print("you are successfully logged in!");
 
 		} else {
 			out.print("<p>Sorry, username or password error</p>");
-			request.getRequestDispatcher("login.html").include(request, response);
+			request.getRequestDispatcher("index.html").include(request, response);
 		}
 
 		request.getRequestDispatcher("footer.html").include(request, response);

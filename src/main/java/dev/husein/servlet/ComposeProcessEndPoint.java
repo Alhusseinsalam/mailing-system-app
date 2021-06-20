@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dev.husein.model.Message;
 import dev.husein.persistence.MessagePersistenceService;
-import dev.husein.util.Formatter;
+import dev.husein.util.DateFormatter;
 
 @WebServlet("/ComposeProcessEndPoint")
 public class ComposeProcessEndPoint extends HttpServlet {
@@ -39,17 +39,17 @@ public class ComposeProcessEndPoint extends HttpServlet {
 			messageBody = messageBody.replaceAll("\n", "<br/>");
 			String sender = (String) request.getSession(false).getAttribute("email");
 
-			Message messageObj = new Message(sender, receiver, subject, messageBody, Formatter.getCurrentDate());
+			Message messageObj = new Message(sender, receiver, subject, messageBody, DateFormatter.getCurrentDate());
 
 			// persist the message
 			mps.addMessage(messageObj);
 			
 			request.setAttribute("msg", "message successfully sent");
-			request.getRequestDispatcher("ComposeServlet").forward(request, response);
+			request.getRequestDispatcher("ComposeEndPoint").forward(request, response);
 
 		} catch (Exception e) {
 			request.setAttribute("msg", "message sending failed");
-			request.getRequestDispatcher("ComposeServlet").forward(request, response);
+			request.getRequestDispatcher("ComposeEndPoint").forward(request, response);
 		}
 		request.getRequestDispatcher("footer.html").include(request, response);
 		out.close();

@@ -2,7 +2,7 @@ package dev.husein.util;
 
 import java.text.SimpleDateFormat;
 
-public class Formatter {
+public class DateFormatter {
 
 	public static java.sql.Date getSqlDate(String strDate){
 		java.sql.Date sqlDate=null;

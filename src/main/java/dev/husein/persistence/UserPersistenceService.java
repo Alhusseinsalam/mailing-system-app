@@ -2,11 +2,16 @@ package dev.husein.persistence;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dev.husein.model.User;
+import dev.husein.util.PasswordHandler;
 
+@Singleton
+@LocalBean
 public class UserPersistenceService implements UserPersistenceLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -22,7 +27,6 @@ public class UserPersistenceService implements UserPersistenceLocal {
 	@Override
 	public void addUser(User user) {
 		this.entityManager.persist(user);
-		
 	}
 
 	@Override
@@ -33,7 +37,6 @@ public class UserPersistenceService implements UserPersistenceLocal {
 	@Override
 	public void deleteUser(User user) {
 		this.entityManager.remove(this.entityManager.contains(user) ? user : this.entityManager.merge(user));
-		
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class UserPersistenceService implements UserPersistenceLocal {
 
 	@Override
 	public boolean checkLoginCredentials(String email, String password) {
-		List<User> users = this.entityManager.createQuery("SELECT user FROM User user WHERE user.email=:email AND user.password:=password AND user.authorized=:authorized", User.class).setParameter("email", email).setParameter("password", password).setParameter("authorized", "yes").getResultList();
+		List<User> users = this.entityManager.createQuery("SELECT user FROM User user WHERE user.email=:email AND user.password=:password AND user.authorized=:authorized", User.class).setParameter("email", email).setParameter("password", PasswordHandler.hashPassword(password)).setParameter("authorized", "yes").getResultList();
 		
 		if (users.size() > 0) {
 			return true;

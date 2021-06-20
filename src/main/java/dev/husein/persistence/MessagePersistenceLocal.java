@@ -13,7 +13,7 @@ public interface MessagePersistenceLocal {
 	
 	public void addMessage(Message message);
 	
-	public Message findMessage(Long messageId);
+	public Message getMessageById(Long messageId);
 	
 	public void deleteMessage(Message message);
 	
@@ -24,4 +24,10 @@ public interface MessagePersistenceLocal {
 	public void putMessageToTrashById(long id);
 	
 	public List<Message> getInboxDescending(String receiver);
+	
+	public List<Message> getSentMailDescending(String sender);
+	
+	public void deleteMessageFromTrash(long id);
+	
+	public List<Message> getTrash();
 }
